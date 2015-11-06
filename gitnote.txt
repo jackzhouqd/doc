@@ -1,0 +1,88 @@
+git add .
+git commit -s “"
+
+git diff .
+git diff HEAD .
+git diff —cached
+
+//带路径，不重置引用，不改变工作区，只改cache, 如：
+git reset HEAD — path
+//不带路径，重置引用，可改变工作区，可改cache, 如：
+git reset —hard HEAD^1   //都改
+git reset —soft HEAD^1     //只改引用，不改工作区cache
+
+git checkout — path  // 从cache覆盖工作区，不同于reset
+git checkout -b branch //切换或创建分支
+git merge xxxxxxx    // 挽救头指针，将xxxxx提交合并到当前分支
+
+git clean -df
+
+git stash
+git stash pop   //恢复后删除
+git stash apply //恢复后不删除
+git stash list    //查看
+git stash pop xxxx
+
+cat .git/refs/heads/master
+git log —graph —pretty=raw
+git cat-file -p xxxxxxxx   // git show = git cat-file -p
+
+rm xx
+git rm xxx
+git mv xxx yyy
+git ls-files
+
+git tag
+git tag -m “xx” tagname
+git tag -d tagname
+git rev-parse refs/tags/tagname
+git push // 默认不会将里程碑推送到上游
+git push origin tangle //显式推送到上游
+
+git archive -o xxx.tar HEAD
+
+git blame
+
+———————
+
+git clone git://github.com/xxxxx localpath
+git show-ref
+
+git branch
+git branch -d xxx 
+
+// 创建共享版本库， 不包含工作区
+git init —bare /path/to/repos/shared.git
+
+//user1
+git clone url:/path/to/repos/shared.git project
+cd project
+git config user.name user1
+git config user.email user1@xx.com
+//edit
+git add xx
+git commit -m “sss”
+git push origin master
+
+git pull //获取远程版本库最新提交，与本地合并
+git push
+
+//比较是否本地最新
+git rev-list HEAD    // 本地版本库的提交
+git ls-remote           //远程版本库的提交
+
+git cherry-pick xxxx
+－－－－－－－－－－－－－
+
+git rebase master
+git rebase —continue
+git push origin branch:master
+
+//查看远程版本库分支
+git branch -r // 查看远程分支
+git checkout -b branch1 // 切换到远程分支1
+//edit
+git pull //同步分支1
+git push //推送到分支1
+
+
